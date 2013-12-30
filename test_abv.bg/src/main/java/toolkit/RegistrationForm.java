@@ -1,8 +1,10 @@
 package toolkit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import static toolkit.AbvStatics.*;
 
@@ -42,13 +44,24 @@ public class RegistrationForm {
 		}
 	}
 	
-	public RegistrationForm enterUserName(String userName){
+	public String enterUserName(String userName){
 		
 		this.userField.clear();
 		this.userField.sendKeys(userName);
 		
-		return this;
+		WebElement error = this.driver.findElement(By.id("userIdMessage"));
+		Assert.assertEquals(error.getCssValue("color"), "rgba(129, 129, 129, 1)");
+		this.userField.sendKeys(Keys.TAB);
+		
+		long end = System.currentTimeMillis() + 500;
+        while (System.currentTimeMillis() < end) {
+        
+        }
+		
+		return error.getText();
 	}
+	
+
 	
 	public RegistrationForm enterPassword(String password){
 		
