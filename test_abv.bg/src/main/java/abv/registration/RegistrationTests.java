@@ -19,19 +19,19 @@ public class RegistrationTests {
 	private Navigations nav;
 	private RegistrationForm regForm;
 	
-	@Test(dataProvider = "dp")
+	@Test(dataProvider = "wrong_usernames")
 	public void f(Integer n, String s) {
 	}
 
-	@DataProvider
+	@DataProvider(name = "wrong_usernames")
 	public Object[][] dp() {
-		return new Object[][] { new Object[] { 1, "a" },
-				new Object[] { 2, "b" }, };
+		return new Object[][] { 
+				{"om"}, {"ome"}, {"o"}};
 	}
 
-	@Test(description = "Test Inavalid name")
-	public void enterInvalidName() {
-		Assert.assertEquals(this.regForm.enterUserName("mo"), SHORT_USER_NAME_ERROR);
+	@Test(dataProvider = "wrong_usernames")
+	public void enterInvalidName(String name) {
+		Assert.assertEquals(this.regForm.enterUserName(name), SHORT_USER_NAME_ERROR);
 	}
 
 	@BeforeSuite
