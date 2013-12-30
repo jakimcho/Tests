@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Registration Suite" parallel="tests" thread-count="2">
+
+	<test name="Test Login">
+		<groups>
+			<run>
+				<exclude name="positive" />
+			</run>
+		</groups>
+		<classes>
+			<class name="abv.Basic" />
+		</classes>
+	</test>
+
+</suite> <!-- Suite -->
